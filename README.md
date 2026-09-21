@@ -35,8 +35,7 @@
       livetl_ui.rpy          悬浮面板
       livetl_fonts.rpy       字体替换
       fonts/
-        MiSans-Regular.otf
-        MiSans-Bold.otf
+        SourceHanSansSC-Regular.otf
 ```
 
 要求游戏是**脚本目录形式**（能读写 `game/tl/`）。打包进 `.rpa` 的游戏暂不支持写入。
@@ -89,10 +88,8 @@
 | `livetl_hotkey` | `"K_F8"` | 面板开关快捷键 |
 | `livetl_position` | `"top-right"` | 面板位置：`top-right` / `bottom-right` |
 | `livetl_panel_width` | `680` | 面板宽度（像素） |
-| `livetl_font` | MiSans | 面板字体 |
+| `livetl_font` | `""` | 面板与字体替换使用的字体文件路径 |
 | `livetl_replace_fonts` | `True` | 是否启用字体替换 |
-| `livetl_font_file` | MiSans-Regular | 替换用的字体 |
-| `livetl_font_file_bold` | MiSans-Bold | 粗体用的字体 |
 | `livetl_scan_fonts` | `True` | 是否扫描脚本收集游戏用到的字体 |
 | `livetl_show_id` | `False` | 显示当前句的翻译标识符（排查问题用） |
 | `livetl_debug` | `True` | 是否写 `game/livetl.log` |
@@ -115,8 +112,7 @@
 
    ```renpy
    livetl_replace_fonts = True
-   livetl_font_file      = "livetl/fonts/SourceHanSansSC-Regular.otf"
-   livetl_font_file_bold = "livetl/fonts/SourceHanSansSC-Bold.otf"
+   livetl_font          = "livetl/fonts/SourceHanSansSC-Regular.otf"
    ```
 
    留空（默认）表示**不做字体替换**，游戏原本的字体照常使用。
