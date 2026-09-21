@@ -15,14 +15,12 @@
 
    ```
    livetl/fonts/SourceHanSansSC-Regular.otf
-   livetl/fonts/SourceHanSansSC-Bold.otf
    ```
 
 3. 打开 `livetl/livetl_config.rpy`，填上路径：
 
    ```renpy
-   livetl_font_file = "livetl/fonts/SourceHanSansSC-Regular.otf"
-   livetl_font_file_bold = "livetl/fonts/SourceHanSansSC-Bold.otf"
+   livetl_font = "livetl/fonts/SourceHanSansSC-Regular.otf"
    ```
 
 留空表示不做字体替换，游戏原本的字体照常使用。

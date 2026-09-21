@@ -47,40 +47,34 @@ init -50 python:
         return sorted(fonts)
 
     def livetl_apply_font_replacement():
-        """把游戏用到的字体全部映射到插件自带的中文字体。"""
-        if not livetl_replace_fonts or not livetl_font_file:
+        """把游戏用到的字体全部映射到指定的字体。"""
+        if not livetl_replace_fonts or not livetl_font:
             return 0
 
-        regular = livetl_font_file
-        bold = livetl_font_file_bold or regular
+        target_font = livetl_font
 
         # 字体文件不存在就跳过（不然游戏会因为找不到字体起不来）
-        if not renpy.loadable(regular):
-            livetl_log("font replacement skipped: {!r} not found".format(regular))
+        if not renpy.loadable(target_font):
+            livetl_log("font replacement skipped: {!r} not found".format(target_font))
             return 0
-
-        if not renpy.loadable(bold):
-            bold = regular
 
         fonts = livetl_collect_fonts()
 
         count = 0
 
         for old_font in fonts:
-            if old_font in (regular, bold):
+            if old_font == target_font:
                 continue
 
             # 常规 / 粗体 / 斜体 / 粗斜体 四种组合都要映射，
-            # 否则文本加粗后又会落回原字体。
+            # 统一直接替换为 livetl_font 指定字体。
             for is_bold in (False, True):
-                target = bold if is_bold else regular
-
                 for italic in (False, True):
-                    config.font_replacement_map[old_font, is_bold, italic] = (target, is_bold, italic)
+                    config.font_replacement_map[old_font, is_bold, italic] = (target_font, is_bold, italic)
 
             count += 1
 
-        livetl_log("font replacement: {} fonts -> {!r}".format(count, regular))
+        livetl_log("font replacement: {} fonts -> {!r}".format(count, target_font))
         return count
 
 
